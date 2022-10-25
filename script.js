@@ -16,41 +16,41 @@ let operator;
 
 const display = document.querySelector('.display');
 
+//Numbers:
+
 const numbers = document.querySelectorAll('.number');
 
 numbers.forEach(number => number.addEventListener('click', () => {
     display.textContent += number.id;
 }));
 
+//Operators
+
 const operators = document.querySelectorAll('.operator');
 
 operators.forEach(op => op.addEventListener('click', () => {
-    if (num1 != undefined && num2 === undefined) {
+    if (op.id === '=') {
+        num2 = display.textContent;
+        display.textContent = operate(num1, num2, operator);
+    } else if (num1 != undefined && num2 === undefined) {
         num2 = display.textContent;
         num1 = operate(num1, num2, operator);
         operator = op.id;
         num2 = undefined;
-        display.textContent = 0;
+        display.textContent = '';
     } else {
         num1 = display.textContent;
         operator = op.id;
-        display.textContent = 0;
+        display.textContent = '';
     }
-    
-    // if (op.id === '=') {
-    //     display.textContent = operate();
-    // } else {
-    //     num1 = display.textContent;
-    //     operator = op.id;
-    //     display.textContent = 0;
-    // }
-
 }))
+
+//Result finder
 
 function operate(num1, num2, operator) {
     let result;
-    a = parseInt(num1);
-    b = parseInt(num2);
+    a = parseFloat(num1);
+    b = parseFloat(num2);
     switch (operator) {
         case '+':
             result = a + b;
