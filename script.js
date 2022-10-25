@@ -31,7 +31,13 @@ const operators = document.querySelectorAll('.operator');
 operators.forEach(op => op.addEventListener('click', () => {
     if (op.id === '=') {
         num2 = display.textContent;
-        display.textContent = operate(num1, num2, operator);
+        result = operate(num1, num2, operator);
+        if (result === Infinity) {
+            alert('Bruh please don\'t do that 💀');
+            Reset()
+        } else {
+            display.textContent = result;
+        }
     } else if (num1 != undefined && num2 === undefined) {
         num2 = display.textContent;
         num1 = operate(num1, num2, operator);
@@ -50,19 +56,10 @@ operators.forEach(op => op.addEventListener('click', () => {
 const reset = document.querySelector('#reset');
 const del = document.querySelector('#delete');
 
-reset.addEventListener('click', () => {
-    num1 = 0;
-    num2 = 0;
-    display.textContent = '';
-})
+reset.addEventListener('click', Reset);
+del.addEventListener('click', Delete);
 
-del.addEventListener('click', () => {
-    let tempArray = display.textContent.split('');
-    tempArray.pop();
-    display.textContent = tempArray.join('');
-})
-
-//Result finder
+//Required functions
 
 function operate(num1, num2, operator) {
     let result;
@@ -82,4 +79,16 @@ function operate(num1, num2, operator) {
             break;
     }
     return result;
+}
+
+function Delete() {
+    let tempArray = display.textContent.split('');
+    tempArray.pop();
+    display.textContent = tempArray.join('');
+}
+
+function Reset() {
+    num1 = 0;
+    num2 = 0;
+    display.textContent = '';
 }
