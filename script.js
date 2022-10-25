@@ -25,21 +25,44 @@ numbers.forEach(number => number.addEventListener('click', () => {
 const operators = document.querySelectorAll('.operator');
 
 operators.forEach(op => op.addEventListener('click', () => {
-    if (op.id === '=') {
-        operate();
+    if (num1 != undefined && num2 === undefined) {
+        num2 = display.textContent;
+        num1 = operate(num1, num2, operator);
+        operator = op.id;
+        num2 = undefined;
+        display.textContent = 0;
     } else {
         num1 = display.textContent;
         operator = op.id;
         display.textContent = 0;
     }
+    
+    // if (op.id === '=') {
+    //     display.textContent = operate();
+    // } else {
+    //     num1 = display.textContent;
+    //     operator = op.id;
+    //     display.textContent = 0;
+    // }
+
 }))
 
 function operate(num1, num2, operator) {
     let result;
+    a = parseInt(num1);
+    b = parseInt(num2);
     switch (operator) {
         case '+':
-        case '=':
+            result = a + b;
+            break;
         case '÷':
+            result = a / b;
+            break;
         case 'x':
+            result = a * b
+            break
+        default:
+            break;
     }
+    return result;
 }
