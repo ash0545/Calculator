@@ -1,2 +1,2 @@
 # Calculator
-Making a simple calculator utizlizing everything I have learnt so far!
+Making a simple calculator utilizing everything I have learnt so far!
