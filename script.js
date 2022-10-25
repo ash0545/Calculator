@@ -45,6 +45,23 @@ operators.forEach(op => op.addEventListener('click', () => {
     }
 }))
 
+//Special buttons
+
+const reset = document.querySelector('#reset');
+const del = document.querySelector('#delete');
+
+reset.addEventListener('click', () => {
+    num1 = 0;
+    num2 = 0;
+    display.textContent = '';
+})
+
+del.addEventListener('click', () => {
+    let tempArray = display.textContent.split('');
+    tempArray.pop();
+    display.textContent = tempArray.join('');
+})
+
 //Result finder
 
 function operate(num1, num2, operator) {
